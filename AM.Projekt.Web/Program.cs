@@ -2,13 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using AM.Projekt.Web.Common.Interfaces;
+using AM.Projekt.Web.Interfaces;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
+var configurationBuilder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
 
+var configuration = configurationBuilder.Build();
 var serviceInstallers = Assembly.GetExecutingAssembly().GetTypes()
     .Where(concreteInstaller =>
         typeof(IServiceInstaller).IsAssignableFrom(concreteInstaller) && !concreteInstaller.IsInterface)
@@ -17,15 +20,15 @@ var serviceInstallers = Assembly.GetExecutingAssembly().GetTypes()
 
 foreach (IServiceInstaller serviceInstaller in serviceInstallers)
 {
-    serviceInstaller.AddServices(builder.Services);
+    serviceInstaller.AddServices(builder.Services, configuration);
 }
 
 var app = builder.Build();
 app.UseHttpsRedirection();
 
-foreach (IServiceInstaller serviceInstaller in serviceInstallers)
+foreach (IServiceInstaller installers in serviceInstallers)
 {
-    serviceInstaller.UseService(app);
+    installers.UseService(app);
 }
 
 var endpointDefinitions = Assembly.GetExecutingAssembly().GetTypes()

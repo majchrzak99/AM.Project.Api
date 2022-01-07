@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace AM.Projekt.Web.Common.Interfaces
+namespace AM.Projekt.Web.Interfaces
 {
     public interface IEndpointDefinition
     {

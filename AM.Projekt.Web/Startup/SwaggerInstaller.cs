@@ -1,13 +1,14 @@
-﻿using AM.Projekt.Web.Common.Interfaces;
+﻿using AM.Projekt.Web.Interfaces;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-namespace AM.Projekt.Web.Common.Startup
+namespace AM.Projekt.Web.Startup
 {
     public class SwaggerInstaller : IServiceInstaller
     {
-        public IServiceCollection AddServices(IServiceCollection services)
+        public IServiceCollection AddServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(options => options.SwaggerDoc("v1", new OpenApiInfo
@@ -31,4 +32,5 @@ namespace AM.Projekt.Web.Common.Startup
             return app;
         }
     }
+   
 }
