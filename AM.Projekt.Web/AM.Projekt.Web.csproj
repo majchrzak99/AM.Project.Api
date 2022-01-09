@@ -7,8 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MediatR" Version="9.0.0" />
-        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+        <PackageReference Include="Mapster" Version="7.2.0" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.1">
           <PrivateAssets>all</PrivateAssets>
@@ -24,12 +23,6 @@
     <ItemGroup>
       <ProjectReference Include="..\AM.Projekt.Infrastructure\AM.Projekt.Infrastructure.csproj" />
       <ProjectReference Include="..\AM.Projekt.Service\AM.Projekt.Service.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="AM.Projekt.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\AM.Projekt.Infrastructure\bin\Debug\net6.0\AM.Projekt.Infrastructure.dll</HintPath>
-      </Reference>
     </ItemGroup>
 
 </Project>

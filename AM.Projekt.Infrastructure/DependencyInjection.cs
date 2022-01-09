@@ -1,5 +1,6 @@
 ﻿using System.Collections.Specialized;
 using System.Reflection;
+using AM.Projekt.Domain.Entities;
 using AM.Projekt.Domain.Interfaces;
 using AM.Projekt.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,9 @@ namespace AM.Projekt.Infrastructure
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(configuration.GetConnectionString("DefaultConnection"))
             );
+
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
             return services;

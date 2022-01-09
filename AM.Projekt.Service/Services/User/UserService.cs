@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Linq;
-using AM.Projekt.Domain.Entities;
 using AM.Projekt.Domain.Interfaces;
 
-namespace AM.Projekt.Service.Services
+namespace AM.Projekt.Service.Services.User
 {
     public interface IUserService
     {
-        User Get(Guid id);
+        Domain.Entities.ApplicationUser Get(Guid id);
     }
     public class UserService : IUserService
     {
@@ -18,9 +17,9 @@ namespace AM.Projekt.Service.Services
             _applicationDbContext = applicationDbContext;
         }
 
-        public User Get(Guid id)
+        public Domain.Entities.ApplicationUser Get(Guid id)
         {
-            _applicationDbContext.Users.Add(new User()
+            _applicationDbContext.ApplicationUsers.Add(new Domain.Entities.ApplicationUser()
             {
                 Email = "a@a.pl",
                 Id = new Guid(),
@@ -28,7 +27,7 @@ namespace AM.Projekt.Service.Services
                 Surname = "test"
             });
             _applicationDbContext.SaveChanges();
-            return _applicationDbContext.Users.FirstOrDefault();
+            return _applicationDbContext.ApplicationUsers.FirstOrDefault();
         }
     }
 }

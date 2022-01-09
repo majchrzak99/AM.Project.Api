@@ -9,7 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
-var configurationBuilder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
+string envConfigName = string.IsNullOrEmpty(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"))
+    ? $".{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}"
+    : "";
+
+var configurationBuilder = new ConfigurationBuilder().AddJsonFile($"appsettings{envConfigName}.json");
 
 var configuration = configurationBuilder.Build();
 var serviceInstallers = Assembly.GetExecutingAssembly().GetTypes()

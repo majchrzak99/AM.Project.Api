@@ -1,5 +1,8 @@
 ﻿using AM.Projekt.Infrastructure;
+using AM.Projekt.Service;
 using AM.Projekt.Service.Services;
+using AM.Projekt.Service.Services.Identity;
+using AM.Projekt.Service.Services.User;
 using AM.Projekt.Web.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -11,8 +14,7 @@ namespace AM.Projekt.Web.Startup
     {
         public IServiceCollection AddServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddInfrastructure(configuration);
-            services.AddScoped<IUserService, UserService>();
+            services.AddService(configuration);
             return services;
         }
 

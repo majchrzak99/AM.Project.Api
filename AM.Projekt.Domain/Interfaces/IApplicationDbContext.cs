@@ -7,7 +7,7 @@ namespace AM.Projekt.Domain.Interfaces
 {
     public interface IApplicationDbContext
     {
-        DbSet<User> Users { get; set; }
+        DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         int SaveChanges();
 
