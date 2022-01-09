@@ -1,3 +1,5 @@
 .idea/
 bin/
 obj/
+AM.Projekt.Web/Db/
+AM.Projekt.Web/appsettings.Development.json
